@@ -33,13 +33,16 @@ t1 = time.perf_counter()
 print('(%0.2fs)'%(t1 - t0))
 print('-> data05.shape =', data.shape)
 print('-> format = 5D "tzcyx" (volumes, slices, channels, height_px, width_px)')
-scan_step_size_px, preview_line_px, timestamp_mode = 3, 10, "off"
-s_px, l_px, ts = scan_step_size_px, preview_line_px, timestamp_mode # shorthand
+scan_step_size_px = 3
+preview_line_px = 10
+preview_crop_px = 0
+timestamp_mode = "off"
 voxel_aspect_ratio =  1.7320508075688772
 
 # Get preview:
 print('\nGetting: preview', end=' ')
-preview = datapreview.get(data, s_px, l_px, ts)
+preview = datapreview.get(
+    data, scan_step_size_px, preview_line_px, preview_crop_px, timestamp_mode)
 t2 = time.perf_counter()
 print('(%0.2fs)'%(t2 - t1))
 print('-> saving: data05_preview.tif')
@@ -49,7 +52,7 @@ if timestamp_mode != "off": data = data[:, :, :, 8:, :] # skip timestamp rows
 
 # Get native data:
 print('\nGetting: native view', end=' ')
-native = datanative.get(data, s_px)
+native = datanative.get(data, scan_step_size_px)
 t3 = time.perf_counter()
 print('(%0.2fs)'%(t3 - t2))
 ##print('-> saving: data05_native.tif')
@@ -57,7 +60,7 @@ print('(%0.2fs)'%(t3 - t2))
 
 # Get traditional data: -> this is very slow (about ~3min)
 print('\nGetting: traditional view', end=' ')
-traditional = datatraditional.get(native, s_px)
+traditional = datatraditional.get(native, scan_step_size_px)
 t4 = time.perf_counter()
 print('(%0.2fs)'%(t4 - t3))
 ##print('-> saving: data05_traditional.tif')
