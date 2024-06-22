@@ -18,6 +18,8 @@ Traditional volumes are then fed into **PSFj** for analysis.
 
 See the included **.pdf reports** and **.csv files** for details.
 
+![social_preview](https://github.com/amsikking/SOLS_psf_data/blob/main/social_preview.png)
+
 ## Reproduce:
 To repeat the analysis:
 - Download the whole repository.
