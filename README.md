@@ -1,4 +1,4 @@
-# SOLS_psf_data
+# SOLS_PSF_data
 An example of PSF data and processing for the original SOLS microscope.
 ## Summary:
 A 3D matrix of randomly distributed fluorescent beads are embedded in a ~water refractive index gel and imaged at ~525nm with the typical SOLS setup (see **Details** below). The raw data is transformed back into the 'traditional' XYZ coordinates of a microscope, and cropped to form a rectangular cuboid (see **data_processing.py**).
